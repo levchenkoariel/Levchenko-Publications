@@ -4,16 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ariel Levchenko — Publications</title>
-  <meta name="description" content="Publications by Ariel Levchenko, formatted in AMA style." />
+  <meta name="description" content="Publications by Ariel Levchenko." />
   <style>
     :root{
       --max: 860px;
-      --fg: #111;
-      --muted:#5b5b5b;
-      --link:#0b57d0;
-      --bg:#fff;
-      --card:#f7f8fa;
-      --rule:#e6e8eb;
+      --fg:#111; --muted:#5b5b5b; --link:#0b57d0;
+      --bg:#fff; --card:#f7f8fa; --rule:#e6e8eb;
       --radius:16px;
     }
     @media (prefers-color-scheme: dark){
@@ -23,9 +19,9 @@
       }
     }
     html{box-sizing:border-box;}
-    *,*:before, *:after{box-sizing:inherit}
+    *,*:before,*:after{box-sizing:inherit}
     body{
-      margin:0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
       color:var(--fg); background:var(--bg);
     }
     header, main, footer{max-width:var(--max); margin:0 auto; padding:24px}
@@ -34,26 +30,29 @@
     .muted{color:var(--muted)}
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
+    .section-title{
+      /* Increased size, slightly tighter bottom space */
+      font-weight:700;
+      font-size:clamp(1.05rem,1.2vw,1.2rem);
+      margin:8px 0 8px; /* reduced bottom margin */
+      color:var(--muted);
+    }
     .card{
       background:var(--card); border:1px solid var(--rule); border-radius:var(--radius);
-      padding:18px 18px; margin-top:18px;
+      padding:18px 18px; margin-top:8px; /* reduced gap between title and list */
     }
 
     /* References with hanging indents and clean auto-numbering */
-    ol.refs{list-style:none; margin:0; padding:0; counter-reset: ref}
-    ol.refs > li{
-      counter-increment: ref;
-      position:relative;
-      padding-left:2.4rem;
-      margin:0 0 1rem;
+    ol.refs{list-style:none; margin:0; padding:0; counter-reset:ref}
+    ol.refs>li{
+      counter-increment:ref; position:relative;
+      padding-left:2.4rem; margin:0 0 1rem;
     }
-    ol.refs > li::before{
-      content: counter(ref) ".";
-      position:absolute; left:0; top:0.1rem; width:2rem; text-align:right; color:var(--muted)
+    ol.refs>li::before{
+      content:counter(ref) ".";
+      position:absolute; left:0; top:0.1rem; width:2rem; text-align:right; color:var(--muted);
     }
-    .cite{
-      text-indent:-2.4rem; padding-left:2.4rem; /* hanging indent */
-    }
+    .cite{ text-indent:-2.4rem; padding-left:2.4rem; } /* hanging indent */
     .journal{font-style:italic}
     .doi{font-variant-numeric:tabular-nums; overflow-wrap:anywhere; word-break:break-word}
     .yearpill{
@@ -86,8 +85,9 @@
 <body>
   <header>
     <h1 id="pubs-title">Ariel Levchenko</h1>
-    <div class="muted">Publications</div>
+    <!-- Email now appears above the Publications label -->
     <div class="muted"><a href="mailto:levchenko.ariel@gmail.com">levchenko.ariel@gmail.com</a></div>
+    <div class="section-title">Publications</div>
   </header>
 
   <main aria-labelledby="pubs-title">
@@ -104,9 +104,7 @@
             <a class="doi" href="https://doi.org/10.1016/j.forsciint.2025.112372" rel="noopener">doi:10.1016/j.forsciint.2025.112372</a>
             <span class="yearpill">2025</span>
           </div>
-          <div class="actions">
-            <button class="copy" data-target="guerini-2025">Copy citation</button>
-          </div>
+          <div class="actions"><button class="copy" data-target="guerini-2025">Copy citation</button></div>
         </li>
 
         <!-- 2024 -->
@@ -192,4 +190,51 @@
             <a class="doi" href="https://doi.org/10.1001/amajethics.2022.959" rel="noopener">doi:10.1001/amajethics.2022.959</a>
             <span class="yearpill">2022</span>
           </div>
-          <div clas
+          <div class="actions"><button class="copy" data-target="amae-2022-regs">Copy citation</button></div>
+        </li>
+
+        <li id="amae-2022-code">
+          <div class="cite">
+            Levchenko A, Chaet D. AMA Code of Medical Ethics opinions related to health care waste.
+            <span class="journal">AMA Journal of Ethics</span>. 2022;24(10):E967-970.
+          </div>
+          <div class="meta-row">
+            <a class="doi" href="https://doi.org/10.1001/amajethics.2022.967" rel="noopener">doi:10.1001/amajethics.2022.967</a>
+            <span class="yearpill">2022</span>
+          </div>
+          <div class="actions"><button class="copy" data-target="amae-2022-code">Copy citation</button></div>
+        </li>
+
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    Last updated <time datetime="2025-09-18">September 18, 2025</time>. © Ariel Levchenko.
+  </footer>
+
+  <script>
+    // Copy the full AMA citation text from the list item
+    function copyCitation(li){
+      const citeEl = li.querySelector('.cite');
+      const metaEl = li.querySelector('.meta-row');
+      let text = (citeEl.innerText + ' ' + (metaEl ? metaEl.innerText : ''))
+        .replace(/\s+\n/g,' ').replace(/\n/g,' ').replace(/\s{2,}/g,' ').trim();
+      navigator.clipboard.writeText(text).then(()=>{
+        const btn = li.querySelector('button.copy');
+        const prev = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.disabled = true;
+        setTimeout(()=>{ btn.textContent = prev; btn.disabled = false; }, 1200);
+      }).catch(()=>{ alert('Could not copy.'); });
+    }
+    document.querySelectorAll('button.copy').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.getAttribute('data-target');
+        const li = document.getElementById(id);
+        if(li) copyCitation(li);
+      });
+    });
+  </script>
+</body>
+</html>
