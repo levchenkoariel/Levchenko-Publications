@@ -32,7 +32,6 @@
     header{padding-top:48px}
     h1{margin:0; font-weight:700; letter-spacing:.2px; font-size:clamp(1.7rem,2.6vw,2.4rem)}
     .muted{color:var(--muted)}
-    .toplinks{margin-top:.5rem}
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
     .card{
@@ -56,25 +55,29 @@
       text-indent:-2.4rem; padding-left:2.4rem; /* hanging indent */
     }
     .journal{font-style:italic}
-    .doi{font-variant-numeric:tabular-nums}
+    .doi{font-variant-numeric:tabular-nums; overflow-wrap:anywhere; word-break:break-word}
     .yearpill{
       display:inline-block; font-size:.78rem; padding:2px 8px; border-radius:999px;
-      background:var(--rule); color:var(--muted); margin-left:.35rem
+      background:var(--rule); color:var(--muted);
+    }
+
+    /* meta row holds DOI and year; prevents overlap */
+    .meta-row{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      margin-top:.2rem; padding-left:2.4rem; /* align with hanging text */
     }
 
     /* Copy buttons */
-    .actions{margin-top:.25rem}
+    .actions{margin-top:.35rem; padding-left:2.4rem}
     button.copy{
       appearance:none; border:1px solid var(--rule); background:transparent; color:var(--fg);
       padding:6px 10px; border-radius:10px; font:inherit; cursor:pointer;
     }
     button.copy:hover{background:rgba(127,127,127,.08)}
-    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .sep{height:1px; background:var(--rule); margin:18px 0}
 
     footer{padding-bottom:56px; color:var(--muted); font-size:.95rem}
     @media print{
-      .actions, .toplinks{display:none}
+      .actions{display:none}
       body{background:#fff; color:#000}
       .card{border:none; background:#fff; padding:0}
     }
@@ -84,15 +87,7 @@
   <header>
     <h1 id="pubs-title">Ariel Levchenko</h1>
     <div class="muted">Publications (AMA style)</div>
-    <div class="toplinks row">
-      <a href="#" aria-label="CV link">CV (PDF)</a>
-      <span>·</span>
-      <a href="#" aria-label="Google Scholar link">Google Scholar</a>
-      <span>·</span>
-      <a href="#" aria-label="ORCID link">ORCID</a>
-      <span>·</span>
-      <a href="mailto:you@example.com">you@example.com</a>
-    </div>
+    <div class="muted"><a href="mailto:you@example.com">you@example.com</a></div>
   </header>
 
   <main aria-labelledby="pubs-title">
@@ -104,6 +99,8 @@
           <div class="cite">
             Guerrini CJ, Robinson JO, Elsaid MI, et al. FIGG at 5: An update on U.S. public perspectives on forensic investigative genetic genealogy five years after its introduction to criminal investigations.
             <span class="journal">Forensic Science International</span>. Published online January 2025:112372.
+          </div>
+          <div class="meta-row">
             <a class="doi" href="https://doi.org/10.1016/j.forsciint.2025.112372" rel="noopener">doi:10.1016/j.forsciint.2025.112372</a>
             <span class="yearpill">2025</span>
           </div>
@@ -117,6 +114,8 @@
           <div class="cite">
             Smith HS, Rubanovich CK, Robinson JO, et al. Measuring perceived utility of genomic sequencing: Development and validation of the GENEtic Utility (GENE-U) scale for adult screening.
             <span class="journal">Genetics in Medicine</span>. 2024;26(11):101240.
+          </div>
+          <div class="meta-row">
             <a class="doi" href="https://doi.org/10.1016/j.gim.2024.101240" rel="noopener">doi:10.1016/j.gim.2024.101240</a>
             <span class="yearpill">2024</span>
           </div>
@@ -127,6 +126,8 @@
           <div class="cite">
             Smith HS, Rubanovich CK, Robinson JO, et al. Measuring perceived utility of genomic sequencing: Development and validation of the GENEtic Utility (GENE-U) scale for pediatric diagnostic testing.
             <span class="journal">Genetics in Medicine</span>. 2024;26(8):101146.
+          </div>
+          <div class="meta-row">
             <a class="doi" href="https://doi.org/10.1016/j.gim.2024.101146" rel="noopener">doi:10.1016/j.gim.2024.101146</a>
             <span class="yearpill">2024</span>
           </div>
@@ -137,6 +138,8 @@
           <div class="cite">
             Smith HS, Robinson JO, Levchenko A, et al. Research participants’ perspectives on precision diagnostics for Alzheimer’s disease.
             <span class="journal">Journal of Alzheimer’s Disease</span>. 2024;97(3):1261-1274.
+          </div>
+          <div class="meta-row">
             <a class="doi" href="https://doi.org/10.3233/JAD-230609" rel="noopener">doi:10.3233/JAD-230609</a>
             <span class="yearpill">2024</span>
           </div>
@@ -148,6 +151,8 @@
           <div class="cite">
             Smith H, Robinson J, Rubanovich C, et al. O58: Measuring perceived utility of genomic sequencing in children and adults: Instrument development and validation.
             <span class="journal">Genetics in Medicine Open</span>. 2023;1(1):100747.
+          </div>
+          <div class="meta-row">
             <a class="doi" href="https://doi.org/10.1016/j.gimo.2023.100747" rel="noopener">doi:10.1016/j.gimo.2023.100747</a>
             <span class="yearpill">2023</span>
           </div>
@@ -158,6 +163,8 @@
           <div class="cite">
             Shulman J, Vanegas-Arroyave N, Fong J, et al. Precision Neurology for Dementia (P2-6.002).
             <span class="journal">Neurology</span>. 2023;100(17 Suppl 2):4045.
+          </div>
+          <div class="meta-row">
             <a class="doi" href="https://doi.org/10.1212/WNL.0000000000203706" rel="noopener">doi:10.1212/WNL.0000000000203706</a>
             <span class="yearpill">2023</span>
           </div>
@@ -168,6 +175,8 @@
           <div class="cite">
             Levchenko A, et al. Impact of precision medicine on patient and caregiver perceptions of Alzheimer’s disease.
             Presented at: American Society for Bioethics and Humanities Annual Meeting; October 2023.
+          </div>
+          <div class="meta-row">
             <span class="yearpill">2023</span>
           </div>
           <div class="actions"><button class="copy" data-target="asbh-2023">Copy citation</button></div>
@@ -178,52 +187,9 @@
           <div class="cite">
             Levchenko A, Schweikert S. How should regulations help health care organizations manage waste?
             <span class="journal">AMA Journal of Ethics</span>. 2022;24(10):E959-966.
+          </div>
+          <div class="meta-row">
             <a class="doi" href="https://doi.org/10.1001/amajethics.2022.959" rel="noopener">doi:10.1001/amajethics.2022.959</a>
             <span class="yearpill">2022</span>
           </div>
-          <div class="actions"><button class="copy" data-target="amae-2022-regs">Copy citation</button></div>
-        </li>
-
-        <li id="amae-2022-code">
-          <div class="cite">
-            Levchenko A, Chaet D. AMA Code of Medical Ethics opinions related to health care waste.
-            <span class="journal">AMA Journal of Ethics</span>. 2022;24(10):E967-970.
-            <a class="doi" href="https://doi.org/10.1001/amajethics.2022.967" rel="noopener">doi:10.1001/amajethics.2022.967</a>
-            <span class="yearpill">2022</span>
-          </div>
-          <div class="actions"><button class="copy" data-target="amae-2022-code">Copy citation</button></div>
-        </li>
-
-      </ol>
-    </section>
-  </main>
-
-  <footer>
-    Last updated <time datetime="2025-09-18">September 18, 2025</time>. © Ariel Levchenko.
-  </footer>
-
-  <script>
-    // Copy the full AMA citation text from the list item
-    function copyCitation(li){
-      // Grab the visible citation text (excluding the button label)
-      const citeEl = li.querySelector('.cite');
-      // Normalize whitespace and trim
-      let text = citeEl.innerText.replace(/\s+\n/g,' ').replace(/\n/g,' ').replace(/\s{2,}/g,' ').trim();
-      navigator.clipboard.writeText(text).then(()=>{
-        const btn = li.querySelector('button.copy');
-        const prev = btn.textContent;
-        btn.textContent = 'Copied!';
-        btn.disabled = true;
-        setTimeout(()=>{ btn.textContent = prev; btn.disabled = false; }, 1200);
-      }).catch(()=>{ alert('Could not copy.'); });
-    }
-    document.querySelectorAll('button.copy').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        const id = btn.getAttribute('data-target');
-        const li = document.getElementById(id);
-        if(li) copyCitation(li);
-      })
-    });
-  </script>
-</body>
-</html>
+          <div clas
